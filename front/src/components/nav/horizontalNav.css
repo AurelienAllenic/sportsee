@@ -1,0 +1,32 @@
+.horizontalNav_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1%;
+    height: 5vh;
+}
+.list_horizontalNav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 96%;
+    font-size: 1.2rem;
+    margin: 0% 4% 0 0%;
+    color: rgb(84, 60, 60);
+}
+.img_horizontalNav{
+    max-width: 100%;
+}
+.element_horizontalNav {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+  .element_img_horizontalNav {
+    display: flex;
+    align-items: center;
+    width: 10%;
+  }
+  
+  
