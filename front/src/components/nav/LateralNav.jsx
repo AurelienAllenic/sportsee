@@ -14,6 +14,7 @@ const LateralNav = () => {
           <li className='element_lateralNav'><BiSwim/></li>
           <li className='element_lateralNav'><MdDirectionsBike/></li>
           <li className='element_lateralNav'><LiaDumbbellSolid/></li>
+          <p className='copyright_nav rotate-text'>Copyright Sportsee 2020</p>
         </ul>
       </nav>
     </>
