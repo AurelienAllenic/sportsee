@@ -1,0 +1,36 @@
+/* Dashboard.jsx */
+
+[id='dashboard']{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 80vh;
+    position: absolute;
+    top: 62%; 
+    right: 46%;
+    transform: translate(50%,-50%);
+    /*border: 1px solid black;*/
+    width: 90%;
+
+}
+
+/* Hello.jsx */
+
+[id='header_hello']{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: center;
+    gap: 1rem;
+    height: fit-content;
+    padding: 3% 0 0 5%;
+}
+.main-title{
+font-size: 3rem;
+}
+.firstName{
+    color: red;
+}
+.sub-title{
+    font-size: 1.1rem;
+}

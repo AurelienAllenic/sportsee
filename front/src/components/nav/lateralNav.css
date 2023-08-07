@@ -1,13 +1,12 @@
 .lateralNav_container {
   display: flex;
-  align-items: center; /* Modifier cette ligne */
-  justify-content: center; /* Modifier cette ligne */
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   background-color: black;
   padding: 1%;
   height: 88vh;
-  width: 3%;
-  padding-inline-start: 40px;
+  width: 2.5%;
 }
 
 .list_lateralNav {
@@ -17,12 +16,11 @@
   flex-direction: column;
   position: relative;
   gap: 1rem;
-  right: 35%;
   width: 100%;
   font-size: 1.2rem;
-  margin: 0% 4% 5% 0%;
+  margin: 0% 5% 5% 0%;
   color: white;
-  height: calc(100% - 3rem); /* ajustement de la hauteur pour exclure l'espace du texte */
+  height: calc(100% - 5rem); /* ajustement de la hauteur pour exclure l'espace du texte */
 }
 
 .element_lateralNav {
@@ -34,12 +32,23 @@
   border-radius: 5px;
   margin-top: auto;
   margin-bottom: -0.5rem;
-  transform: translateY(50%); /* Ajouter cette ligne */
+  transform: translateY(50%);
 }
+
+.rotate-text {
+  writing-mode: vertical-rl;
+  text-align: center;
+  margin-top: auto;
+  font-size: 1rem;
+  font-weight: 500;
+  transform: rotate(180deg);
+}
+
 
 .element_lateralNav + .element_lateralNav {
   margin-top: 0.5rem;
 }
+
 .element_lateralNav svg {
   fill: red;
   width: 100%;
@@ -49,13 +58,4 @@
 .element_img_lateralNav {
   display: flex;
   align-items: center;
-}
-
-.copyright_nav{
-  writing-mode: vertical-rl;
-  text-align: center;
-  margin-top: auto;
-  font-size: 1rem;
-  font-weight: 500;
-  transform: rotate(180deg);
 }

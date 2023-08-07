@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 code {
@@ -16,4 +18,8 @@ ul{
   margin-block-start: 0em;
   margin-block-end: 0em;
   padding-inline-start: 5px;
+}
+*{
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
