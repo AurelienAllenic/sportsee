@@ -5,7 +5,7 @@ const ApiService = {
     const url = `http://localhost:3000/user/${userId}`;
     
     return axios.get(url).then((res) => {
-        console.log(res.data.data)
+        console.log(res.data)
       return res.data.data.userInfos.firstName;
     });
   },
@@ -28,6 +28,27 @@ const ApiService = {
        return {calorieCount, carbohydrateCount, lipidCount, proteinCount};
     });
   },
+
+  getUserActivity: (userId) => {
+    const url = `http://localhost:3000/user/${userId}/activity`;
+  
+    return axios.get(url).then((res) => {
+      let weight = res.data.data.sessions.map(session => session.kilogram);
+      let burnedCalories = res.data.data.sessions.map(session => session.calories);
+      let days = res.data.data.sessions.map(session => new Date(session.day).getDate());
+      
+      console.log('weight', weight);
+      console.log('burnedCalories', burnedCalories);
+
+      return { weight, burnedCalories, days };
+    });
+  }
+  
+  
+  
+  
+  
+  
 };
 
 export default ApiService;

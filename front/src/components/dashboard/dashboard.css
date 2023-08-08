@@ -34,3 +34,6 @@ font-size: 3rem;
 .sub-title{
     font-size: 1.1rem;
 }
+div svg{
+    height: 70vh;
+}
