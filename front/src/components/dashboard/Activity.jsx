@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import ApiService from './apiService';
 
+
 const renderCustomAxisTick = ({ x, y, payload }) => {
   let path = '';
 
@@ -27,10 +28,14 @@ const renderCustomAxisTick = ({ x, y, payload }) => {
 };
 
 const Activity = () => {
-  const [infos, setInfos] = useState({});
+  const [infos, setInfos] = useState([]);
   const [weightState, setWeight] = useState({});
   const [burnedCaloriesState, setBurnedCalories] = useState({});
 
+  const minWeight = Math.min(...infos.map(data => data.weight));
+  const maxWeight = Math.max(...infos.map(data => data.weight));
+  const uniqueValues = Array.from({ length: maxWeight - minWeight + 1 }, (_, index) => minWeight + index);
+  
 
   useEffect(() => {
     ApiService.getUserActivity(12)
@@ -52,10 +57,13 @@ const Activity = () => {
   }, []);
 
   const renderCustomAxisTick = ({ x, y, payload }) => {
+    const index = payload.index;
+    const day = infos[index].day;
+
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={20} dy={16} textAnchor="middle" fill="#666">
-          {payload.value}
+        <text x={0} y={5} dy={16} textAnchor="middle" fill="#666">
+          {day}
         </text>
       </g>
     );
@@ -64,12 +72,14 @@ const Activity = () => {
   return (
     <div style={{ minHeight: '50vh' }}>
       {infos && infos.length > 0 ? (
-       <BarChart width={700} height={400} data={infos}>
-  <XAxis dataKey="day" tick={renderCustomAxisTick} />
-  <YAxis yAxisId="kg" orientation="right" domain={[0, 'dataMax + 10']} />
-  <Bar yAxisId="kg" radius={[20, 20, 0, 0]} maxBarSize={10} fill="#000000" dataKey="weight" />
-  <Bar yAxisId="day" radius={[20, 20, 0, 0]} maxBarSize={10} fill="#FF0000" dataKey="burnedCalories" />
-</BarChart>
+        <BarChart width={700} height={400} data={infos}>
+          <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false}/>
+          <YAxis yAxisId="kg" orientation="right" domain={[Math.min(...infos.map(data => data.weight)), weightState]} tickValues={uniqueValues} tickCount={uniqueValues.length} interval={0}
+            tickLine={false}/>
+          <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true}/>
+          <Bar yAxisId="kg" radius={[20, 20, 0, 0]} maxBarSize={10} fill="#000000" dataKey="weight" />
+          <Bar yAxisId="weight" radius={[20, 20, 0, 0]} maxBarSize={10} fill="#FF0000" dataKey="burnedCalories" />
+        </BarChart>
        ) : (
         <p>Loading...</p>
       )}

@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <>
     <section id='dashboard'>
-   
+      <Activity />
       <Card />
     </section>
       
