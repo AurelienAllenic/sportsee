@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import ApiService from '../dashboard/apiService';
 import './dashboard.css';
 
-const Hello = () => {
+const Hello = ({userId}) => {
   const [firstName, setFirstName] = useState('');
 
   useEffect(() => {
-    ApiService.getName(18)
+    ApiService.getName(userId)
       .then((firstName) => {
         setFirstName(firstName);
       })

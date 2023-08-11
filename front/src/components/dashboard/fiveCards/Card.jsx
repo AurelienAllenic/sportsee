@@ -18,11 +18,11 @@ const Card = ({ icon, number, type }) => {
   );
 }
 
-const CardContainer = () => {
+const CardContainer = ({ userId }) => {
   const [count, setCount] = useState({});
 
   useEffect(() => {
-    ApiService.getUserCount(18)
+    ApiService.getUserCount(userId)
       .then(({ calorieCount, proteinCount, lipidCount, carbohydrateCount }) => {
   
         setCount({ calorieCount, proteinCount, lipidCount, carbohydrateCount });
@@ -31,7 +31,7 @@ const CardContainer = () => {
         console.error(error);
       });
 
-  }, []);
+  }, [userId]);
 
   const formatNumber = (number) => {
     if (number !== undefined) {

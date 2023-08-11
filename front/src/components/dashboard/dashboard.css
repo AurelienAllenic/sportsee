@@ -6,7 +6,7 @@
     justify-content: center;
     max-height: 80vh;
     position: absolute;
-    top: 62%; 
+    top: 65%; 
     right: 46%;
     transform: translate(50%,-50%);
     /*border: 1px solid black;*/
@@ -24,6 +24,9 @@
     gap: 1rem;
     height: fit-content;
     padding: 3% 0 0 5%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
 }
 .main-title{
 font-size: 3rem;
@@ -35,5 +38,29 @@ font-size: 3rem;
     font-size: 1.1rem;
 }
 div svg{
-    height: 50vh;
+    height: 40vh;
+    background-color: #fbfbfb;
+    display: flex;
+    align-items: baseline;
 }
+.chart-container {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    justify-content: baseline;
+  }
+  
+  .chart-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 10;
+  }
+  
+  .bar-container {
+    display: flex;
+    gap: 10px; /* Ajoutez la valeur souhaitée pour l'espace entre les barres */
+  }
+  

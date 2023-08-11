@@ -1,0 +1,34 @@
+[id="home"]{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%,-50%);
+}
+.main-sentence-choice{
+    font-size: 2rem;
+    text-align: center;
+    font-style: italic;
+}
+.btn-choice{
+    padding: 2% auto;
+    border: none;
+    background-color: transparent;
+
+}
+.link-choice{
+font-size: 1.7rem;
+text-decoration: none;
+color: black;
+}
+.container-choices{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3% 0 0 0 ;
+    gap: 4rem;
+}
+.link-choice:hover{
+    font-weight: bold;
+    transition: all ease 0.5s;
+}

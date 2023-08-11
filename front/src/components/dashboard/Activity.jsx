@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, CartesianGrid } from 'recharts';
 import ApiService from './apiService';
 
 
@@ -27,18 +27,23 @@ const renderCustomAxisTick = ({ x, y, payload }) => {
   );
 };
 
-const Activity = () => {
+const Activity = ({ userId }) => {
+  
+
+  console.log(userId)
   const [infos, setInfos] = useState([]);
   const [weightState, setWeight] = useState({});
   const [burnedCaloriesState, setBurnedCalories] = useState({});
 
   const minWeight = Math.min(...infos.map(data => data.weight));
   const maxWeight = Math.max(...infos.map(data => data.weight));
-  const uniqueValues = Array.from({ length: maxWeight - minWeight + 1 }, (_, index) => minWeight + index);
+  const uniqueValues = Array.from({ length: (maxWeight - minWeight) *  1.5 }, (_, index) => minWeight + index / 2);
+
+
   
 
   useEffect(() => {
-    ApiService.getUserActivity(12)
+    ApiService.getUserActivity(userId)
       .then(({ weight, burnedCalories, days }) => {
         const data = days.map((day, index) => ({
           name: `${index + 1}`,
@@ -70,16 +75,21 @@ const Activity = () => {
   };
 
   return (
-    <div style={{ minHeight: '50vh' }}>
+    <div style={{ minHeight: '75vh' }}className="chart-container">
+      <h2 className='chart-title'>Activité quotidienne</h2>
       {infos && infos.length > 0 ? (
-        <BarChart width={700} height={400} data={infos}>
-          <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false}/>
-          <YAxis yAxisId="kg" orientation="right" domain={[Math.min(...infos.map(data => data.weight)), weightState]} tickValues={uniqueValues} tickCount={uniqueValues.length} interval={0}
-            tickLine={false}/>
-          <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true}/>
-          <Bar yAxisId="kg" radius={[20, 20, 0, 0]} maxBarSize={10} fill="#000000" dataKey="weight" />
-          <Bar yAxisId="weight" radius={[20, 20, 0, 0]} maxBarSize={10} fill="#FF0000" dataKey="burnedCalories" />
-        </BarChart>
+        <BarChart width={1300} height={200} data={infos} barSize={20} margin={{ top: 0, right: 0, left: 30, bottom: 0 }}>
+        <CartesianGrid horizontal={true} vertical={false} />
+        <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false} domain={[infos[0].day, infos[infos.length - 1].day + 1]} />
+        <YAxis yAxisId="kg" orientation="right" domain={[Math.min(...infos.map(data => data.weight - 1)), weightState]} tickCount={uniqueValues.length} interval={0} tickLine={false} />
+        <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true} />
+        <Bar yAxisId="kg" radius={[20, 20, 0, 0]} fill="#000000" dataKey="weight" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
+        <Bar yAxisId="weight" radius={[20, 20, 0, 0]} fill="#FF0000" dataKey="burnedCalories" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
+        <PieChart>
+          <Pie data={infos} fill="#8884d8" label={infos} nameKey="name" />
+        </PieChart>
+      </BarChart>
+      
        ) : (
         <p>Loading...</p>
       )}
