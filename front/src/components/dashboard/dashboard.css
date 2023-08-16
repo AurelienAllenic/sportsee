@@ -38,8 +38,7 @@ font-size: 3rem;
     font-size: 1.1rem;
 }
 div svg{
-    height: 40vh;
-    background-color: #fbfbfb;
+
     display: flex;
     align-items: baseline;
 }
@@ -50,6 +49,10 @@ div svg{
     justify-content: baseline;
   }
   
+  .background-chart{
+    background-color: #fbfbfb;
+    padding: 3%;
+  }
   .chart-title {
     position: absolute;
     top: 20px;
@@ -62,5 +65,54 @@ div svg{
   .bar-container {
     display: flex;
     gap: 10px; /* Ajoutez la valeur souhaitée pour l'espace entre les barres */
+  }
+  .weight-indicator{
+  }
+  .kcal-indicator{
+
+  }
+  .chart-wrapper {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .indications-container {
+    position: absolute;
+    top: 20%;
+    right: 50%;
+  }
+  /* ACTIVITY */
+
+  .container-weightkcal{
+    display: flex;
+    gap: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0;
+  }
+  .custom-tooltip {
+    background-color: red;
+    color: white;
+    position: relative;
+    top: -5rem;
+    left: 2rem;
+    transform: translate(100%, 0%);
+    z-index: 9999;
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+  }
+  
+  .recharts-tooltip-wrapper {
+    background: inherit;
+    background-color: transparent;
+
+  }
+  .custom-tooltip span{
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
   }
   

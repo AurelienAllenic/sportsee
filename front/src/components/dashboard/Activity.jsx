@@ -1,7 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, CartesianGrid } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, CartesianGrid, Tooltip, Legend } from 'recharts';
 import ApiService from './apiService';
 
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const weight = payload[0].value;
+    const kcal = payload[1].value;
+
+    return (
+      <div className="custom-tooltip">
+        <span>{weight}kg</span>
+        <span>{kcal}kCal</span>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const renderCustomAxisTick = ({ x, y, payload }) => {
   let path = '';
@@ -29,7 +45,6 @@ const renderCustomAxisTick = ({ x, y, payload }) => {
 
 const Activity = ({ userId }) => {
   
-
   console.log(userId)
   const [infos, setInfos] = useState([]);
   const [weightState, setWeight] = useState({});
@@ -37,11 +52,10 @@ const Activity = ({ userId }) => {
 
   const minWeight = Math.min(...infos.map(data => data.weight));
   const maxWeight = Math.max(...infos.map(data => data.weight));
-  const uniqueValues = Array.from({ length: (maxWeight - minWeight) *  1.5 }, (_, index) => minWeight + index / 2);
+  const uniqueValues = Array.from({ length: maxWeight - minWeight + 1 }, (_, index) => minWeight + index);
 
-
+  console.log(minWeight, maxWeight, uniqueValues)
   
-
   useEffect(() => {
     ApiService.getUserActivity(userId)
       .then(({ weight, burnedCalories, days }) => {
@@ -75,26 +89,48 @@ const Activity = ({ userId }) => {
   };
 
   return (
-    <div style={{ minHeight: '75vh' }}className="chart-container">
-      <h2 className='chart-title'>Activité quotidienne</h2>
-      {infos && infos.length > 0 ? (
-        <BarChart width={1300} height={200} data={infos} barSize={20} margin={{ top: 0, right: 0, left: 30, bottom: 0 }}>
-        <CartesianGrid horizontal={true} vertical={false} />
-        <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false} domain={[infos[0].day, infos[infos.length - 1].day + 1]} />
-        <YAxis yAxisId="kg" orientation="right" domain={[Math.min(...infos.map(data => data.weight - 1)), weightState]} tickCount={uniqueValues.length} interval={0} tickLine={false} />
-        <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true} />
-        <Bar yAxisId="kg" radius={[20, 20, 0, 0]} fill="#000000" dataKey="weight" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-        <Bar yAxisId="weight" radius={[20, 20, 0, 0]} fill="#FF0000" dataKey="burnedCalories" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-        <PieChart>
-          <Pie data={infos} fill="#8884d8" label={infos} nameKey="name" />
-        </PieChart>
-      </BarChart>
-      
-       ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+    
+  <div style={{ minHeight: '75vh' }} className="chart-container">
+    <h2 className='chart-title'>Activité quotidienne</h2>
+
+    {infos && infos.length > 0 ? (
+      <div className='background-chart'>
+          <Legend
+            verticalAlign="top"
+            align="right"
+            layout="horizontal"
+            height={16}
+            width={600}
+            payload={[
+              { value: 'Poids (kg)', type: 'circle', color: '#000000'},
+              { value: '', type: 'circle', color: 'transparent', height: 10 },
+              { value: 'Calories brûlées (kCal)', type: 'circle', color: '#FF0000'},
+            ]}
+            margin={{ top: 20, right: 50, left: 50, bottom: 50 }}
+            style={{position: 'absolute', zIndex: 11}}
+          />
+            <BarChart width={1300} height={300} data={infos} barSize={20} margin={{ top: 70, right: 20, left: 20, bottom: 0 }} domain={[weightState - 1, maxWeight + 1]}>
+              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
+              <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false} domain={[infos[0].day, infos[infos.length - 1].day + 1]} barCategoryGap={0}/>
+              <YAxis yAxisId="kg" orientation="right" domain={[minWeight - 1, maxWeight]} tickCount={uniqueValues.length +1} interval={0} tickLine={false} />
+              <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true} />
+              <Bar yAxisId="kg" radius={[20, 20, 0, 0]} fill="#000000" dataKey="weight" barSize={10} />
+              <Bar yAxisId="weight" radius={[20, 20, 0, 0]} fill="#FF0000" dataKey="burnedCalories" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
+              <Tooltip
+                        cursor={{ fill: 'rgba(219, 214, 214, 0.7)' }}
+                        wrapperStyle={{ pointerEvents: 'none' }}
+                        offset={-50}
+                        content={<CustomTooltip />}
+                        position={{ x: 'right', y: 'top' }}
+                        isAnimationActive={false}
+                      />
+            </BarChart>
+        </div>
+      ) : (
+      <p>Loading...</p>
+    )}
+  </div>
+);
 };
 
 export default Activity;
