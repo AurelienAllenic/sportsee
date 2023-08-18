@@ -9,11 +9,19 @@ const ApiService = {
       return res.data.data.userInfos.firstName;
     });
   },
-  getUserAverageSession: (userId) => {
-    const url = `http://localhost:3000/user/${userId}/average-session`;
 
+  getScore: (userId) => {
+    const url = `http://localhost:3000/user/${userId}`;
+    
     return axios.get(url).then((res) => {
-      return res.data.data.averageSession;
+        console.log(res.data)
+      return res.data.data.todayScore;
+    });
+  },
+  getUserAverageSession: (userId) => {
+    const url = `http://localhost:3000/user/${userId}/average-sessions`;
+    return axios.get(url).then((res) => {
+      return res.data.data.sessions;
     });
   },
 
@@ -42,12 +50,16 @@ const ApiService = {
 
       return { weight, burnedCalories, days };
     });
-  }
+  },
+  getUserPerformance: (userId) => {
+    const url = `http://localhost:3000/user/${userId}/performance`;
   
-  
-  
-  
-  
+    return axios.get(url).then((res) => {
+      console.log(res.data)
+
+      return res.data
+    });
+  },
   
 };
 

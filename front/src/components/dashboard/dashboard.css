@@ -115,4 +115,50 @@ div svg{
     font-size: 0.9rem;
     text-align: center;
   }
-  
+  /* PERFORMANCCE */
+
+  .custom-tooltip-average{
+    background-color: #fbfbfb;
+    padding: 5px;
+  }
+  .main-title-sessions{
+    color: #fbfbfb;
+  }
+
+  /* SCORE */
+
+  .container-score{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #74798c;
+    background: white;
+    padding: 3.5% 3.5% 3.5% 3.5%;
+    border-radius: 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .container-percentages{
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 36px;
+    text-align: center;
+
+  }
+  .container-objectives{
+    margin-top: 2%;
+    font-weight: 500;
+  }
+  .end-objectives{
+font-weight: 500;
+  }
+  .second-container-score{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
