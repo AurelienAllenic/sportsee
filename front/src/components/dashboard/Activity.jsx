@@ -90,7 +90,7 @@ const Activity = ({ userId }) => {
 
   return (
     
-  <div style={{ minHeight: '75vh' }} className="chart-container">
+  <div style={{ minHeight: '50vh' }} className="chart-container">
     <h2 className='chart-title'>Activité quotidienne</h2>
 
     {infos && infos.length > 0 ? (
@@ -109,7 +109,7 @@ const Activity = ({ userId }) => {
             margin={{ top: 20, right: 50, left: 50, bottom: 50 }}
             style={{position: 'absolute', zIndex: 11}}
           />
-            <BarChart width={1300} height={300} data={infos} barSize={20} margin={{ top: 70, right: 20, left: 20, bottom: 0 }} domain={[weightState - 1, maxWeight + 1]}>
+            <BarChart width={1120} height={300} data={infos} barSize={20} margin={{ top: 70, right: 20, left: 20, bottom: 0 }} domain={[weightState - 1, maxWeight + 1]}>
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
               <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false} domain={[infos[0].day, infos[infos.length - 1].day + 1]} barCategoryGap={0}/>
               <YAxis yAxisId="kg" orientation="right" domain={[minWeight - 1, maxWeight]} tickCount={uniqueValues.length +1} interval={0} tickLine={false} />

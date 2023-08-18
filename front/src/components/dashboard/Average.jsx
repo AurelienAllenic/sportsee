@@ -46,7 +46,7 @@ const Average = ({ userId }) => {
   return (
     <>
       <div style={{ backgroundColor: 'red', borderRadius: '10px' }}>
-        <LineChart width={300} height={310} data={infosAverage} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <LineChart width={350} height={310} data={infosAverage} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
         <text x={10} y={10} dx={10} dy={50} style={{ fontSize: '20px', fill: 'white', opacity: 0.8 }}>
     Durée moyenne des <tspan x={10} y={65} dx={10} dy={25}>sessions</tspan>
   </text>

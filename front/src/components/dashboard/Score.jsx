@@ -39,8 +39,9 @@ console.log(data[0].value)
   };
 
   return (
-    <div style={{  background: '#FBFBFB', padding: 20 }}>
- <RadialBarChart width={300} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
+    <div style={{  background: '#FBFBFB', padding: 20 }} className='chart-container'>
+
+ <RadialBarChart width={350} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
   <text x="10" y="30" fontSize={20} fill="black" textAnchor="start" fontWeight={500}>
     Score
   </text>

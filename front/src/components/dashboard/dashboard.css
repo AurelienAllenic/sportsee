@@ -4,13 +4,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-height: 80vh;
+    max-height: 20vh;
     position: absolute;
-    top: 65%; 
-    right: 46%;
+    top: 75%; 
+    right: 48%;
     transform: translate(50%,-50%);
     /*border: 1px solid black;*/
-    width: 90%;
+    width: 80%;
 
 }
 
@@ -125,6 +125,9 @@ div svg{
     color: #fbfbfb;
   }
 
+  .container-performance{
+
+  }
   /* SCORE */
 
   .container-score{
@@ -143,6 +146,8 @@ div svg{
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    width: 50%;
+    padding: 15% 0 15% 0;
   }
   .container-percentages{
     color: rgba(0, 0, 0, 0.8);
@@ -161,4 +166,16 @@ font-weight: 500;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+  }
+  .containerInfosLeft{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* EXTRA FOR DASHBOARD.JSX */
+
+  .container-bottom{
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2rem;
   }

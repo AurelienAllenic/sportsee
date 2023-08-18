@@ -5,8 +5,10 @@
   flex-direction: column;
   background-color: black;
   padding: 1%;
-  height: 88vh;
+  height: 100vh;
   width: 2.5%;
+  position: fixed;
+  bottom: 0;
 }
 
 .list_lateralNav {
@@ -20,8 +22,9 @@
   font-size: 1.2rem;
   margin: 0% 5% 5% 0%;
   color: white;
-  height: calc(100% - 5rem); /* ajustement de la hauteur pour exclure l'espace du texte */
+  height: calc(100% - 5rem);
 }
+
 
 .element_lateralNav {
   display: flex;

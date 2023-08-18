@@ -12,12 +12,21 @@ const ApiService = {
 
   getScore: (userId) => {
     const url = `http://localhost:3000/user/${userId}`;
-    
+  
     return axios.get(url).then((res) => {
-        console.log(res.data)
-      return res.data.data.todayScore;
+      console.log(res.data);
+      console.log(userId); // Vérifiez la valeur de userId
+  
+      if (parseInt(userId) === 18) { // Assurez-vous du type de données de userId
+        console.log('18');
+        return res.data.data.score;
+      } else {
+        console.log('pas 18');
+        return res.data.data.todayScore;
+      }
     });
   },
+  
   getUserAverageSession: (userId) => {
     const url = `http://localhost:3000/user/${userId}/average-sessions`;
     return axios.get(url).then((res) => {

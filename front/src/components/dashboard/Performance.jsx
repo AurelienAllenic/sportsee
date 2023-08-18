@@ -46,7 +46,7 @@ const Performance = ({ userId }) => {
     <>
    <RadarChart
   outerRadius={90}
-  width={300}
+  width={350}
   height={350}
   data={reversedRadarData}
   style={{ background: 'black', borderRadius: '15px' }}
