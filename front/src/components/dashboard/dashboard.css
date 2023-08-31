@@ -7,11 +7,9 @@
     max-height: 20vh;
     position: absolute;
     top: 75%; 
-    right: 48%;
+    right: 50%;
     transform: translate(50%,-50%);
-    /*border: 1px solid black;*/
     width: 80%;
-
 }
 
 /* Hello.jsx */
@@ -49,6 +47,8 @@ div svg{
     justify-content: baseline;
   }
   
+  /* ACTIVITY */
+
   .background-chart{
     background-color: #fbfbfb;
     padding: 3%;
@@ -64,26 +64,17 @@ div svg{
   
   .bar-container {
     display: flex;
-    gap: 10px; /* Ajoutez la valeur souhaitée pour l'espace entre les barres */
-  }
-  .weight-indicator{
-  }
-  .kcal-indicator{
-
+    gap: 10px;
   }
   .chart-wrapper {
     display: flex;
     justify-content: space-between;
-    
-  }
-  
+  } 
   .indications-container {
     position: absolute;
     top: 20%;
     right: 50%;
   }
-  /* ACTIVITY */
-
   .container-weightkcal{
     display: flex;
     gap: 50px;
@@ -115,6 +106,7 @@ div svg{
     font-size: 0.9rem;
     text-align: center;
   }
+  
   /* PERFORMANCCE */
 
   .custom-tooltip-average{
@@ -125,9 +117,6 @@ div svg{
     color: #fbfbfb;
   }
 
-  .container-performance{
-
-  }
   /* SCORE */
 
   .container-score{
@@ -153,7 +142,6 @@ div svg{
     color: rgba(0, 0, 0, 0.8);
     font-size: 36px;
     text-align: center;
-
   }
   .container-objectives{
     margin-top: 2%;
@@ -171,11 +159,44 @@ font-weight: 500;
     display: grid;
     grid-template-columns: 1fr;
   }
-
-  /* EXTRA FOR DASHBOARD.JSX */
+.lineChart:hover{
+  background-color: linear-gradient(#fbfbfb, #fbfbfb00);
+}  /* EXTRA FOR DASHBOARD.JSX */
 
   .container-bottom{
     display: flex;
     gap: 3rem;
     margin-bottom: 2rem;
   }
+  .tooltip-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, red, gray);
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .custom-tooltip-average:hover .tooltip-gradient {
+    opacity: 1;
+  }
+  [id='linechart']{
+    border-radius: 10px;
+  }
+  [id='linechart']:hover{
+    background: linear-gradient(to left,  rgba(162, 2, 2, 0.847), red);
+    
+    transition: all ease 1s forwards;
+  }
+  .tooltip-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  

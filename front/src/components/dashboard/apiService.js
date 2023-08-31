@@ -5,7 +5,6 @@ const ApiService = {
     const url = `http://localhost:3000/user/${userId}`;
     
     return axios.get(url).then((res) => {
-        console.log(res.data)
       return res.data.data.userInfos.firstName;
     });
   },
@@ -14,14 +13,10 @@ const ApiService = {
     const url = `http://localhost:3000/user/${userId}`;
   
     return axios.get(url).then((res) => {
-      console.log(res.data);
-      console.log(userId); // Vérifiez la valeur de userId
   
-      if (parseInt(userId) === 18) { // Assurez-vous du type de données de userId
-        console.log('18');
+      if (parseInt(userId) === 18) {
         return res.data.data.score;
       } else {
-        console.log('pas 18');
         return res.data.data.todayScore;
       }
     });
@@ -53,9 +48,6 @@ const ApiService = {
       let weight = res.data.data.sessions.map(session => session.kilogram);
       let burnedCalories = res.data.data.sessions.map(session => session.calories);
       let days = res.data.data.sessions.map(session => new Date(session.day).getDate());
-      
-      console.log('weight', weight);
-      console.log('burnedCalories', burnedCalories);
 
       return { weight, burnedCalories, days };
     });
@@ -64,8 +56,6 @@ const ApiService = {
     const url = `http://localhost:3000/user/${userId}/performance`;
   
     return axios.get(url).then((res) => {
-      console.log(res.data)
-
       return res.data
     });
   },

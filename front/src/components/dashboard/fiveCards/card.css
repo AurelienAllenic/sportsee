@@ -3,7 +3,7 @@
     align-items: flex-start;
     justify-content: flex-end;
     flex-direction: column;
-    gap: 4.5rem;
+    gap: 3.5rem;
     margin-left: auto;
     padding-right: 2rem;
     margin-bottom: 10%;
@@ -16,7 +16,7 @@ background-color: #fbfbfb;
 padding: 1.8rem 3.5rem 1.8rem 0.5rem;
 width: 230px;
 position: relative;
-left: 20%;
+left: 30%;
 border-radius: 10px;
 gap: 2rem;
 }

@@ -23,9 +23,6 @@ const Performance = ({ userId }) => {
       });
   }, []);
 
-  console.log('DATA', data);
-  console.log('KIND', kind);
-
   const names = [
     'Cardio',
     'Energie',

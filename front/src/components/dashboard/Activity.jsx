@@ -44,8 +44,6 @@ const renderCustomAxisTick = ({ x, y, payload }) => {
 };
 
 const Activity = ({ userId }) => {
-  
-  console.log(userId)
   const [infos, setInfos] = useState([]);
   const [weightState, setWeight] = useState({});
   const [burnedCaloriesState, setBurnedCalories] = useState({});
@@ -53,8 +51,6 @@ const Activity = ({ userId }) => {
   const minWeight = Math.min(...infos.map(data => data.weight));
   const maxWeight = Math.max(...infos.map(data => data.weight));
   const uniqueValues = Array.from({ length: maxWeight - minWeight + 1 }, (_, index) => minWeight + index);
-
-  console.log(minWeight, maxWeight, uniqueValues)
   
   useEffect(() => {
     ApiService.getUserActivity(userId)
@@ -65,7 +61,6 @@ const Activity = ({ userId }) => {
           burnedCalories: burnedCalories[index],
           day: day
         }));
-        console.log(data ,'=> data')
         setInfos(data);
         setWeight(data.weight)
         setBurnedCalories(data.burnedCalories)
@@ -78,10 +73,10 @@ const Activity = ({ userId }) => {
   const renderCustomAxisTick = ({ x, y, payload }) => {
     const index = payload.index;
     const day = infos[index].day;
-
+  
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={5} dy={16} textAnchor="middle" fill="#666">
+        <text x={0} y={5} dy={26} style={{ fontWeight: 500, fontSize: 17, opacity: 0.5}}>
           {day}
         </text>
       </g>
@@ -90,41 +85,70 @@ const Activity = ({ userId }) => {
 
   return (
     
-  <div style={{ minHeight: '50vh' }} className="chart-container">
+  <div style={{ minHeight: '45vh' }} className="chart-container">
     <h2 className='chart-title'>Activité quotidienne</h2>
 
     {infos && infos.length > 0 ? (
       <div className='background-chart'>
-          <Legend
-            verticalAlign="top"
-            align="right"
-            layout="horizontal"
-            height={16}
-            width={600}
-            payload={[
-              { value: 'Poids (kg)', type: 'circle', color: '#000000'},
-              { value: '', type: 'circle', color: 'transparent', height: 10 },
-              { value: 'Calories brûlées (kCal)', type: 'circle', color: '#FF0000'},
-            ]}
-            margin={{ top: 20, right: 50, left: 50, bottom: 50 }}
-            style={{position: 'absolute', zIndex: 11}}
-          />
-            <BarChart width={1120} height={300} data={infos} barSize={20} margin={{ top: 70, right: 20, left: 20, bottom: 0 }} domain={[weightState - 1, maxWeight + 1]}>
-              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
-              <XAxis dataKey="day" tick={renderCustomAxisTick} tickLine={false} domain={[infos[0].day, infos[infos.length - 1].day + 1]} barCategoryGap={0}/>
-              <YAxis yAxisId="kg" orientation="right" domain={[minWeight - 1, maxWeight]} tickCount={uniqueValues.length +1} interval={0} tickLine={false} />
-              <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true} />
-              <Bar yAxisId="kg" radius={[20, 20, 0, 0]} fill="#000000" dataKey="weight" barSize={10} />
-              <Bar yAxisId="weight" radius={[20, 20, 0, 0]} fill="#FF0000" dataKey="burnedCalories" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-              <Tooltip
-                        cursor={{ fill: 'rgba(219, 214, 214, 0.7)' }}
-                        wrapperStyle={{ pointerEvents: 'none' }}
-                        offset={-50}
-                        content={<CustomTooltip />}
-                        position={{ x: 'right', y: 'top' }}
-                        isAnimationActive={false}
-                      />
-            </BarChart>
+<Legend
+    verticalAlign="top"
+    align="right"
+    layout="horizontal"
+    height={16}
+    width={600}
+    payload={[
+      { value: 'Poids (kg)', type: 'circle', color: '#000000'},
+      { value: '', type: 'circle', color: 'transparent', height: 10 },
+      { value: 'Calories brûlées (kCal)', type: 'circle', color: '#FF0000'},
+    ]}
+    margin={{ top: 20, right: 50, left: 50, bottom: 50 }}
+    style={{position: 'absolute', zIndex: 11}}
+  />
+<BarChart
+  width={1110}
+  height={300}
+  data={infos}
+  barSize={20}
+  margin={{ top: 70, right: 20, left: 20, bottom: 10 }}
+  domain={[weightState - 1, maxWeight + 1]}
+  barStyle={{ opacity: 1 }}
+>
+<CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false}/>
+<XAxis
+  dataKey="day"
+  tick={renderCustomAxisTick}
+  tickLine={false}
+  domain={[infos[0].day, infos[infos.length - 1].day]}
+  barCategoryGap={0}
+  padding={{ left: -80, right: -80 }}
+/>
+<YAxis
+  yAxisId="kg"
+  orientation="right"
+  domain={[minWeight - 1, maxWeight]}
+  tickCount={uniqueValues.length + 1}
+  interval={0}
+  tickLine={false}
+  axisLine={false}
+  dx={40}
+  tick={(props) => (
+    <text {...props} style={{ opacity: 0.6, fontWeight: 500, fontSize: 17 }}>
+      {props.payload.value}
+    </text>
+  )}
+/>
+<YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true}/>
+<Bar yAxisId="kg" radius={[20, 20, 0, 0]} fill="#000000" dataKey="weight" barSize={10} fillOpacity={1} />
+<Bar yAxisId="weight" radius={[20, 20, 0, 0]} fill="#FF0000" dataKey="burnedCalories" barSize={10} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} fillOpacity={1} />
+<Tooltip
+  cursor={{ fill: 'rgba(206, 202, 202, 0.417)' }}
+  wrapperStyle={{ pointerEvents: 'none' }}
+  offset={0}
+  content={<CustomTooltip />}
+  position={{ x: 'right', y: 'top' }}
+  isAnimationActive={false}
+/>
+</BarChart>
         </div>
       ) : (
       <p>Loading...</p>

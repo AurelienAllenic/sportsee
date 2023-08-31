@@ -8,7 +8,6 @@ const Score = ({ userId }) => {
   useEffect(() => {
     ApiService.getScore(userId)
       .then((res) => {
-        console.log(res);
         setScore(res);
       })
       .catch((error) => {
@@ -24,7 +23,6 @@ const Score = ({ userId }) => {
     { name: 'Score', value: calculatePercentage(score) * 4},
     { name: 'Remaining', value: 100 - calculatePercentage(score) },
   ];
-console.log(data[0].value)
   const COLORS = ['red', '#FBFBFB'];
 
   const labelContent = () => {
