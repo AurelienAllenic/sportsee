@@ -36,7 +36,6 @@ font-size: 3rem;
     font-size: 1.1rem;
 }
 div svg{
-
     display: flex;
     align-items: baseline;
 }
@@ -159,9 +158,7 @@ font-weight: 500;
     display: grid;
     grid-template-columns: 1fr;
   }
-.lineChart:hover{
-  background-color: linear-gradient(#fbfbfb, #fbfbfb00);
-}  /* EXTRA FOR DASHBOARD.JSX */
+ /* EXTRA FOR DASHBOARD.JSX */
 
   .container-bottom{
     display: flex;
@@ -184,14 +181,8 @@ font-weight: 500;
   .custom-tooltip-average:hover .tooltip-gradient {
     opacity: 1;
   }
-  [id='linechart']{
-    border-radius: 10px;
-  }
-  [id='linechart']:hover{
-    background: linear-gradient(to left,  rgba(162, 2, 2, 0.847), red);
-    
-    transition: all ease 1s forwards;
-  }
+
+
   .tooltip-gradient {
     position: absolute;
     bottom: 0;
