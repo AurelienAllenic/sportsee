@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from './apiService';
-import { RadialBarChart, RadialBar, Cell, Legend } from 'recharts';
+import { RadialBarChart, RadialBar, Cell, ResponsiveContainer } from 'recharts';
 
 const Score = ({ userId }) => {
   const [score, setScore] = useState([]);
@@ -37,6 +37,7 @@ const Score = ({ userId }) => {
   };
 
   return (
+    <ResponsiveContainer className='responsiveContainer_score'>
     <div style={{  background: '#FBFBFB', padding: 20 }} className='chart-container'>
 
  <RadialBarChart width={350} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
@@ -72,6 +73,7 @@ const Score = ({ userId }) => {
       </div>
       </div>
     </div>
+    </ResponsiveContainer>
   );
 };
 

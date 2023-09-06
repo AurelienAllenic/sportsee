@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import ApiService from './apiService';
 
 
@@ -84,8 +84,8 @@ const Activity = ({ userId }) => {
   };
 
   return (
-    
-  <div style={{ minHeight: '45vh' }} className="chart-container">
+    <ResponsiveContainer className='responsiveContainer_activity' width='100%' height='100%' aspect={4 / 1}>
+  <div className="chart-container">
     <h2 className='chart-title'>Activité quotidienne</h2>
 
     {infos && infos.length > 0 ? (
@@ -94,8 +94,7 @@ const Activity = ({ userId }) => {
     verticalAlign="top"
     align="right"
     layout="horizontal"
-    height={16}
-    width={600}
+
     payload={[
       { value: 'Poids (kg)', type: 'circle', color: '#000000'},
       { value: '', type: 'circle', color: 'transparent', height: 10 },
@@ -154,6 +153,7 @@ const Activity = ({ userId }) => {
       <p>Loading...</p>
     )}
   </div>
+  </ResponsiveContainer>
 );
 };
 

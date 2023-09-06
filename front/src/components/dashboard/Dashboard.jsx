@@ -20,12 +20,14 @@ const Dashboard = () => {
           <div className='container-activity'>
             <Activity userId={id} />
           </div>
+          {/* 
           <div className='container-bottom'>
             <Average userId={id}/>
             <Performance userId={id}/>
             <Score userId={id}/>
-          </div>
+          </div>*/}
         </div>
+        
         <div className='containerInfosRight'>
         <Card userId={id}/>
         </div>

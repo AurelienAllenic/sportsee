@@ -9,6 +9,7 @@
   width: 2.5%;
   position: fixed;
   bottom: 0;
+  z-index: 2;
 }
 
 .list_lateralNav {
@@ -61,4 +62,9 @@
 .element_img_lateralNav {
   display: flex;
   align-items: center;
+}
+@media(max-width: 1024px){
+  .lateralNav_container {
+    height: 140vh;
+  }
 }

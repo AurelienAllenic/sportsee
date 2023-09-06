@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef} from 'react';
 import ApiService from './apiService';
-import { LineChart, XAxis, YAxis, Tooltip, Line, Rectangle } from 'recharts';
+import { LineChart, XAxis, YAxis, Tooltip, Line, Rectangle, ResponsiveContainer } from 'recharts';
 
 function customMouseMove(e){
   let sessionWrap = document.querySelector('.container_average_sessions');
@@ -91,6 +91,7 @@ const CustomTooltipAverage = ({ active, payload }) => {
 
   return (
     <>
+    <ResponsiveContainer className='responsiveContainer_average'>
     <div className='container_average_sessions'>
       <LineChart
         width={350}
@@ -100,12 +101,11 @@ const CustomTooltipAverage = ({ active, payload }) => {
         style={{ background: 'red', borderRadius: '10px' }}
         id='linechart'
         onMouseMove={(e) => customMouseMove(e)}
-                    onMouseOut={() => customOnMouseOut()}
+        onMouseOut={() => customOnMouseOut()}
       >
         <text x={10} y={10} dx={10} dy={50} style={{ fontSize: '20px', fill: 'white', opacity: 0.8 }}>
           Durée moyenne des <tspan x={10} y={65} dx={10} dy={25}>sessions</tspan>
         </text>
-  
         <XAxis
           dataKey="day"
           tickFormatter={formatDayTick}
@@ -115,9 +115,7 @@ const CustomTooltipAverage = ({ active, payload }) => {
           padding={{ left: -40, right: -40 }}
           textAnchor="middle"
         />
-
         <YAxis dataKey="sessionLength" hide={true} data={infosAverage} domain={yAxisDomain} scale={'linear'}/>
-  
         <Tooltip
             wrapperStyle={{
               background: '#FFF',
@@ -134,7 +132,6 @@ const CustomTooltipAverage = ({ active, payload }) => {
             content={<CustomTooltipAverage />}
             cursor={<CustomCursor />}
           />
-  
         <Line
           type="monotone"
           dataKey="sessionLength"
@@ -143,9 +140,6 @@ const CustomTooltipAverage = ({ active, payload }) => {
           dot={false}
           activeDot={{ r: 4, strokeWidth: 4, stroke: "white", fill: "white" }}
         />
-  
-    
-  
         <defs>
           <linearGradient id="linear-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="lightgray" />
@@ -154,6 +148,7 @@ const CustomTooltipAverage = ({ active, payload }) => {
         </defs>
       </LineChart>
       </div>
+      </ResponsiveContainer>
     </>
   );  
 };

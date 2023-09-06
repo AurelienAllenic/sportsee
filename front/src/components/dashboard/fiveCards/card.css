@@ -34,3 +34,42 @@ font-size: 1.2rem;
 .indication-type{
 opacity: 0.8;
 }
+@media(max-width: 1024px){
+    .img-card{
+        width: 3rem;
+    }
+    .cards{
+        gap: 1rem;
+        flex-direction: row;
+        position: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 95%;
+        padding-right: 0rem;
+    }
+
+    .indication-number{
+font-size: 1rem;
+padding-right: 3rem;
+    }
+    .indication-type{
+        font-size: 0.9rem;
+        padding-right: 3rem;
+    }
+    .card{
+        position: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        width: auto;
+    }
+    .containerInfosRight{
+        margin-top: 5%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
