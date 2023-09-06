@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from './apiService';
 import { RadialBarChart, RadialBar, Cell, ResponsiveContainer } from 'recharts';
+import { MdMargin } from 'react-icons/md';
 
 const Score = ({ userId }) => {
   const [score, setScore] = useState([]);
@@ -29,7 +30,7 @@ const Score = ({ userId }) => {
     return (
       <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle">
         {`${calculatePercentage(score)}%`}
-        <tspan x="50%" dy="1em" >
+        <tspan x="50%" dy="1em">
           de votre objectif
         </tspan>
       </text>
@@ -37,8 +38,8 @@ const Score = ({ userId }) => {
   };
 
   return (
-    <ResponsiveContainer className='responsiveContainer_score'>
-    <div style={{  background: '#FBFBFB', padding: 20 }} className='chart-container'>
+    <ResponsiveContainer className='responsiveContainer_score' width='100%' height='100%' aspect={1/1}>
+    <div style={{  background: '#FBFBFB'}} className='chart-container padding'>
 
  <RadialBarChart width={350} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
   <text x="10" y="30" fontSize={20} fill="black" textAnchor="start" fontWeight={500}>

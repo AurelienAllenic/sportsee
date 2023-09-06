@@ -61,7 +61,7 @@ const Average = ({ userId }) => {
         width={1000}
         height={1000}
         x={X}
-        y={Y - 100}
+        y={Y}
         style={{background: 'red', opacity: 0.1}}
       />
     )
@@ -91,11 +91,9 @@ const CustomTooltipAverage = ({ active, payload }) => {
 
   return (
     <>
-    <ResponsiveContainer className='responsiveContainer_average'>
     <div className='container_average_sessions'>
+    <ResponsiveContainer className='responsiveContainer_average ' width='100%' height='100%' aspect={1 / 1}>
       <LineChart
-        width={350}
-        height={350}
         data={infosAverage}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         style={{ background: 'red', borderRadius: '10px' }}
@@ -147,8 +145,8 @@ const CustomTooltipAverage = ({ active, payload }) => {
           </linearGradient>
         </defs>
       </LineChart>
-      </div>
       </ResponsiveContainer>
+      </div>
     </>
   );  
 };

@@ -84,7 +84,7 @@ const Activity = ({ userId }) => {
   };
 
   return (
-    <ResponsiveContainer className='responsiveContainer_activity' width='100%' height='100%' aspect={4 / 1}>
+    <ResponsiveContainer className='responsiveContainer_activity' width='100%' height='100%' aspect={6 / 1}>
   <div className="chart-container">
     <h2 className='chart-title'>Activité quotidienne</h2>
 

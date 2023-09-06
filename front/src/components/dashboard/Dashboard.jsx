@@ -8,6 +8,7 @@ import Performance from './Performance'
 import Test from './Average';
 import Average from './Average';
 import Score from './Score';
+import { ResponsiveContainer } from 'recharts';
 const Dashboard = () => {
   const { id } = useParams();
   return (
@@ -20,12 +21,14 @@ const Dashboard = () => {
           <div className='container-activity'>
             <Activity userId={id} />
           </div>
-          {/* 
+          
           <div className='container-bottom'>
+            
             <Average userId={id}/>
             <Performance userId={id}/>
             <Score userId={id}/>
-          </div>*/}
+            
+          </div>
         </div>
         
         <div className='containerInfosRight'>
