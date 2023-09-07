@@ -12,8 +12,8 @@ import { Text } from 'recharts'; // Ajout de l'import pour Text
 const Performance = ({ userId }) => {
   const [data, setData] = useState([]);
   const [kind, setKind] = useState({});
-  const [fontSize, setFontSize] = useState(window.innerWidth <= 1024 ? 12 : 25); // Initialize font size
-
+  const [fontSize, setFontSize] = useState(window.innerWidth <= 1600 ? 15 : 20); // Initialize font size
+  const [outerRadius, setOuterRadius] = useState(window.innerWidth <= 1600 ? 90 : 120); // Initialize outer radius
   useEffect(() => {
     ApiService.getUserPerformance(userId)
       .then((res) => {
@@ -50,7 +50,8 @@ const Performance = ({ userId }) => {
   const reversedRadarData = radarData.slice().reverse();
 
   const handleResize = () => {
-    setFontSize(window.innerWidth <= 1200 ? 14 : 17);
+    setFontSize(window.innerWidth <= 1600 ? 15 : 20);
+    setOuterRadius(window.innerWidth <= 1600 ? 90 : 120);
   };
 
   function renderPolarAngleAxis({ payload, x, y, cx, cy, ...rest }) {
@@ -60,7 +61,7 @@ const Performance = ({ userId }) => {
         verticalAnchor="middle"
         y={y + (y - cy) / 5.5}
         x={x + (x - cx) / 5.5}
-        fontSize='20px'
+        fontSize={fontSize}
         fill="white"
         textAnchor="middle"
       >
@@ -71,11 +72,12 @@ const Performance = ({ userId }) => {
 
   return (
     <>
-      <ResponsiveContainer className='responsiveContainer_performance' width='100%' height='100%' aspect={1/1}>
+      <ResponsiveContainer className='responsiveContainer_performance' aspect={1/1}>
         <RadarChart
-          outerRadius={120}
+          outerRadius={outerRadius}
           data={reversedRadarData}
           style={{ background: 'black', borderRadius: '15px' }}
+          id='performancechart'
         >
           <PolarGrid gridType="polygon" radialLines={false} />
           <PolarAngleAxis

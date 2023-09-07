@@ -33,7 +33,7 @@ font-size: 1.2rem;
 .indication-type{
 opacity: 0.8;
 }
-@media(max-width: 1024px){
+@media(min-width: 1024px) and (max-width: 1700px) {
     .img-card{
         width: 3rem;
     }

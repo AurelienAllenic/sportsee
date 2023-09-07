@@ -17,11 +17,12 @@ const Dashboard = () => {
       <LateralNav />
       <Hello userId={id}/>
     <section id='dashboard'>
+      <div className='additionnal_container'>
         <div className='containerInfosLeft'>
+          
           <div className='container-activity'>
             <Activity userId={id} />
           </div>
-          
           <div className='container-bottom'>
             
             <Average userId={id}/>
@@ -33,6 +34,7 @@ const Dashboard = () => {
         
         <div className='containerInfosRight'>
         <Card userId={id}/>
+        </div>
         </div>
     </section>
     </>
