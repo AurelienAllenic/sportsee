@@ -25,6 +25,8 @@ const Activity = ({ userId }) => {
   const [infos, setInfos] = useState([]);
   const [weightState, setWeight] = useState({});
   const [burnedCaloriesState, setBurnedCalories] = useState({});
+  const [width, setWidth] = useState(window.innerWidth <= 1600 ? 1000 : 1100);;
+  const [height, setHeight] = useState(window.innerWidth <= 1600 ? 350 : 350);;
 
   const minWeight = Math.min(...infos.map(data => data.weight));
   const maxWeight = Math.max(...infos.map(data => data.weight));
@@ -46,7 +48,18 @@ const Activity = ({ userId }) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+      window.addEventListener('resize', handleResize);
+
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+  }, [userId]);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth <= 1600 ? 1000 : 1100);
+    setHeight(window.innerWidth <= 1600 ? 300 : 300);
+  };
 
   const renderCustomAxisTick = ({ x, y, payload }) => {
     const index = payload.index;
@@ -81,14 +94,14 @@ const Activity = ({ userId }) => {
     margin={{ top: 20, right: 50, left: 50, bottom: 50 }}
     style={{position: 'absolute', zIndex: 11}}
   />
+  <div className='container_barchart' style={{ width: width, height: height }}>
 <BarChart
-  width={1110}
-  height={300}
+  height={height}
+  width={width}
   data={infos}
   barSize={20}
-  margin={{ top: 70, right: 20, left: 20, bottom: 10 }}
+  margin={{ top: 75, right: 20, left: 20, bottom: 10 }}
   domain={[weightState - 1, maxWeight + 1]}
-  barStyle={{ opacity: 1 }}
 >
 <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false}/>
 <XAxis
@@ -108,11 +121,7 @@ const Activity = ({ userId }) => {
   tickLine={false}
   axisLine={false}
   dx={40}
-  tick={(props) => (
-    <text {...props} style={{ opacity: 0.6, fontWeight: 500, fontSize: 17 }}>
-      {props.payload.value}
-    </text>
-  )}
+  tickFormatter={(value) => `${value}`} // Utiliser tickFormatter pour afficher les chiffres
 />
 <YAxis yAxisId="weight" domain={[0, 'dataMax + 10']} hide={true}/>
 <Bar yAxisId="kg" radius={[20, 20, 0, 0]} fill="#000000" dataKey="weight" barSize={10} fillOpacity={1} />
@@ -126,6 +135,7 @@ const Activity = ({ userId }) => {
   isAnimationActive={false}
 />
 </BarChart>
+</div>
         </div>
       ) : (
       <p>Loading...</p>

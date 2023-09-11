@@ -19,19 +19,13 @@ const Dashboard = () => {
     <section id='dashboard'>
       <div className='additionnal_container'>
         <div className='containerInfosLeft'>
-          
-          <div className='container-activity'>
             <Activity userId={id} />
-          </div>
           <div className='container-bottom'>
-            
             <Average userId={id}/>
             <Performance userId={id}/>
             <Score userId={id}/>
-            
           </div>
         </div>
-        
         <div className='containerInfosRight'>
         <Card userId={id}/>
         </div>

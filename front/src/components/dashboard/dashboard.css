@@ -55,6 +55,11 @@ div svg{
   
   /* ACTIVITY */
 
+  .container_barchart{
+    width: 1100px;
+    height: 300px;
+  }
+
   .background-chart{
     background-color: #fbfbfb;
     padding: 3%;
@@ -177,7 +182,7 @@ font-weight: 500;
   .container-bottom{
     display: flex;
     gap: 10px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     margin-top: 5rem;
   }
   .tooltip-gradient {
@@ -210,6 +215,11 @@ font-weight: 500;
   .container_average_sessions{
     width: 100%;
     height: 100%;
+  }
+  
+  .responsiveContainer_average{
+    width:100%;
+    height:100%;
   }
 
   .responsiveContainer_average .recharts_wrapper{
@@ -256,6 +266,8 @@ font-weight: 500;
       justify-content: center;
       min-height: 20vh!important;
       margin-left: 0%;
+      width: 1100px;
+  height: 300px;
     }
     .custom-tooltip span {
       display: inline-block;
@@ -266,11 +278,15 @@ font-weight: 500;
       width: 100px !important;
       z-index: 2;
     }
-
-/*.responsiveContainer_activity .chart-container .background-chart div:nth-child(2) svg, .background-chart div{
-  width: 800px!important;
+    .responsiveContainer_activity {
+      width: 1100px;
+  height: 300px;
+    }
+.responsiveContainer_activity .chart-container .background-chart .recharts-wrapper{
+  width: 1100px;
+  height: 300px;
 }
-
+/*
 .responsiveContainer_average .recharts-wrapper{
   width: 250px!important;
   height: 250px!important;
