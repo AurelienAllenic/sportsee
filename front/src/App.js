@@ -13,12 +13,6 @@ function App() {
         <Route path="/user/:id" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
-      {/*<HorizontalNav />
-      <div style={{ display: "flex" }}>
-      <LateralNav />
-      <Hello />
-     <Dashboard />
-  </div>*/}
     </div>
   );
 }

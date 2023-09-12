@@ -11,7 +11,6 @@
   bottom: 0;
   z-index: 2;
 }
-
 .list_lateralNav {
   display: flex;
   align-items: center;
@@ -25,8 +24,6 @@
   color: white;
   height: calc(100% - 5rem);
 }
-
-
 .element_lateralNav {
   display: flex;
   align-items: center;
@@ -38,7 +35,6 @@
   margin-bottom: -0.5rem;
   transform: translateY(50%);
 }
-
 .rotate-text {
   writing-mode: vertical-rl;
   text-align: center;
@@ -47,18 +43,14 @@
   font-weight: 500;
   transform: rotate(180deg);
 }
-
-
 .element_lateralNav + .element_lateralNav {
   margin-top: 0.5rem;
 }
-
 .element_lateralNav svg {
   fill: red;
   width: 100%;
   height: 3rem;
 }
-
 .element_img_lateralNav {
   display: flex;
   align-items: center;

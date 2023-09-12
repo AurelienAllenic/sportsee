@@ -18,366 +18,327 @@
 /* Hello.jsx */
 
 [id='header_hello']{
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    justify-content: center;
-    gap: 1rem;
-    height: fit-content;
-    padding: 3% 0 0 5%;
-    position: absolute;
-    top: 7%;
-    left: 5%;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  justify-content: center;
+  gap: 1rem;
+  height: fit-content;
+  padding: 3% 0 0 5%;
+  position: absolute;
+  top: 7%;
+  left: 5%;
 }
 .main-title{
-font-size: 3rem;
+  font-size: 3rem;
 }
 .firstName{
-    color: red;
+  color: red;
 }
 .sub-title{
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 div svg{
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 .chart-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  .padding{
-    border-radius: 15px;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.borderRadius{
+  border-radius: 15px;
+}
   
   /* ACTIVITY */
 
-  .container_barchart{
-    width: 1100px;
-    height: 300px;
-  }
-
-  .background-chart{
-    background-color: #fbfbfb;
-    padding: 3%;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .chart-title {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    z-index: 10;
-  }
-  
-  .bar-container {
-    display: flex;
-    gap: 10px;
-  }
-  .chart-wrapper {
-    display: flex;
-    justify-content: space-between;
-  } 
-  .indications-container {
-    position: absolute;
-    top: 20%;
-    right: 50%;
-  }
-  .container-weightkcal{
-    display: flex;
-    gap: 50px;
-    position: absolute;
-    top: 0px;
-    right: 0;
-  }
-  .custom-tooltip {
-    background-color: red;
-    color: white;
-    position: relative;
-    top: -5rem;
-    left: 2rem;
-    transform: translate(100%, 0%);
-    z-index: 9999;
-    visibility: visible;
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-  }
-  
-  .recharts-tooltip-wrapper {
-    background: inherit;
-    background-color: transparent;
-  }
-
-  .custom-tooltip span{
-    padding: 10px;
-    font-size: 0.9rem;
-    text-align: center;
-  }
-  
-  /* PERFORMANCCE */
-
-  .custom-tooltip-average{
-    background-color: #fbfbfb;
-  }
-  .main-title-sessions{
-    color: #fbfbfb;
-  }
-
-  /* SCORE */
-
-  .container-score{
-    position: absolute;
-    left: 52%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    line-height: 20px;
-    font-weight: 700;
-    text-align: center;
-    color: #74798c;
-    background: white;
-    padding: 2.5% 4.5% 2.5% 4.5%;
-    border-radius: 10rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    width:50%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    padding: 15% 0 15% 0;
-  }
-  .container-percentages{
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 36px;
-    text-align: center;
-  }
-  .container-objectives{
-    margin-top: 2%;
-    font-weight: 500;
-  }
-  .end-objectives{
-font-weight: 500;
-  }
-  .second-container-score{
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-  .containerInfosLeft{
-    display: grid;
-    grid-template-columns: 1fr;
-  }
- /* EXTRA FOR DASHBOARD.JSX */
-
-  .container-bottom{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 3rem;
-    margin-top: 5rem;
-  }
-  .tooltip-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, red, gray);
-    border-radius: 10px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  
-  .custom-tooltip-average:hover .tooltip-gradient {
-    opacity: 1;
-  }
-
-
-  .tooltip-gradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
-  }
-  
-  /* RESPONSIVE */
-
-  .container_average_sessions{
-    width: 100%;
-    height: 100%;
-  }
-  
-  .responsiveContainer_average{
-    width:100%;
-    height:100%;
-  }
-
-  .responsiveContainer_average .recharts_wrapper{
-    width:100%;
-    height:100%;
-  }
-  .responsiveContainer_score{
-    width:100%;
-    height:100%;
-  }
-  .responsiveContainer_score .chart-container{
-    width:100%;
-    height:100%;
-  }
-  [id="scorechart"]{
-    width:350px;
-    height:350px;
-  }
-  @media(max-width: 1600px){
-    .chart-container{
-      margin-left: 10%;
-    }
-    .card{
-      left: 15%;
-    }
-  }
-  @media(max-width: 1400px){
-    .chart-container{
-      margin-left: 12%;
-
-    }
-  }
-  @media(min-width: 1024px) and (max-width: 1600px) {
-    .responsiveContainer_activity {
-      margin-top: 20%;
-      width: 80%;
-    }
-    .containerInfosRight{
-      display: flex;
-    }
-    .chart-container{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 20vh!important;
-      margin-left: 0%;
-      width: 1100px;
-  height: 300px;
-    }
-    .custom-tooltip span {
-      display: inline-block;
-      transform: scale(0.8); /* Réduire la taille du tooltip à 80% */
-      transform-origin: top left; /* Définir l'origine de la transformation */
-    }.custom-tooltip {
-      left: -2rem;
-      width: 100px !important;
-      z-index: 2;
-    }
-    .responsiveContainer_activity {
-      width: 1100px;
-  height: 300px;
-    }
-.responsiveContainer_activity .chart-container .background-chart .recharts-wrapper{
+.container_barchart{
   width: 1100px;
   height: 300px;
 }
-/*
-.responsiveContainer_average .recharts-wrapper{
-  width: 250px!important;
-  height: 250px!important;
-}
-.responsiveContainer_average .recharts-wrapper svg{
-  width: 250px!important;
-  height: 250px!important;
-}
-.responsiveContainer_performance .recharts-wrapper svg{
-  width: 250px!important;
-  height: 250px!important;
-}
-.responsiveContainer_performance .recharts-wrapper{
-  width: 250px!important;
-  height: 250px!important;
-}
-.responsiveContainer_score .recharts-wrapper{
-  width: 250px!important;
-  height: 250px!important;
-}
-.responsiveContainer_score .chart-container .recharts-wrapper svg{
-  width: 250px!important;
-  height: 250px!important;
-}*/
-[id='dashboard']{
-  flex-direction: column;
-  width: 100%;
-  top: 65%;
-  justify-content: center;
-  align-items: center;
-}
-.additionnal_container{
-  transform: scale(0.75);
-  flex-direction: column;
-}
-.chart-title{
-  font-size: 1rem;
-}
-.padding{
-  margin-top: 0%;
-  padding: 0rem;
-}
 
-/* AVERAGE */
+.background-chart{
+  background-color: #fbfbfb;
+  padding: 3%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chart-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  z-index: 10;
+}
+.bar-container {
+  display: flex;
+  gap: 10px;
+}
+.chart-wrapper {
+  display: flex;
+  justify-content: space-between;
+} 
+.indications-container {
+  position: absolute;
+  top: 20%;
+  right: 50%;
+}
+.container-weightkcal{
+  display: flex;
+  gap: 50px;
+  position: absolute;
+  top: 0px;
+  right: 0;
+}
+.custom-tooltip {
+  background-color: red;
+  color: white;
+  position: relative;
+  top: -5rem;
+  left: 2rem;
+  transform: translate(100%, 0%);
+  z-index: 9999;
+  visibility: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+.recharts-tooltip-wrapper {
+  background: inherit;
+  background-color: transparent;
+}
+.custom-tooltip span{
+  padding: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+  
+  /* PERFORMANCCE */
 
 .custom-tooltip-average{
-  width: 25px!important;
-  height: inherit!important;
+  background-color: #fbfbfb;
 }
-.custom-tooltip-average span{
- text-align: center;
- display: flex;
- width: 100%;
- margin-left: 80%;
- flex-wrap: break-word;
+.main-title-sessions{
+  color: #fbfbfb;
 }
-.background-chart{
-  padding: 1%;
-  margin: 0 5% 0 5%;
+
+  /* SCORE */
+
+.container-score{
+  position: absolute;
+  left: 52%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #74798c;
+  background: white;
+  padding: 2.5% 4.5% 2.5% 4.5%;
+  border-radius: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width:50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 15% 0 15% 0;
 }
-.cards{
-  margin-left: none;
+.container-percentages{
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 36px;
+  text-align: center;
 }
-/* ACTIVITY */
+.container-objectives{
+  margin-top: 2%;
+  font-weight: 500;
+}
+.end-objectives{
+font-weight: 500;
+}
+.second-container-score{
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.containerInfosLeft{
+  display: grid;
+  grid-template-columns: 1fr;
+}
 
+ /* EXTRA FOR DASHBOARD.JSX */
 
+.container-bottom{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 3rem;
+  margin-top: 5rem;
+}
+.tooltip-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, red, gray);
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.custom-tooltip-average:hover .tooltip-gradient {
+  opacity: 1;
+}
+.tooltip-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+  
+  /* RESPONSIVE */
 
-/* SCORE */
+.container_average_sessions{
+  width: 100%;
+  height: 100%;
+}
 
-
-.container-score{}
+.responsiveContainer_average{
+  width:100%;
+  height:100%;
+}
+.responsiveContainer_average .recharts_wrapper{
+  width:100%;
+  height:100%;
+}
+.responsiveContainer_score{
+  width:100%;
+  height:100%;
+}
+.responsiveContainer_score .chart-container{
+  width:100%;
+  height:100%;
+}
+[id="scorechart"]{
+  width:350px;
+  height:350px;
+}
+@media(max-width: 1600px){
+  .chart-container{
+    margin-left: 10%;
+  }
+  .card{
+    left: 15%;
+  }
+}
+@media(max-width: 1400px){
+  .chart-container{
+    margin-left: 12%;
+  }
+}
+@media(min-width: 1024px) and (max-width: 1600px) {
+  .responsiveContainer_activity {
+    margin-top: 20%;
+    width: 80%;
+  }
+  .containerInfosRight{
+    display: flex;
+  }
+  .chart-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20vh!important;
+    margin-left: 0%;
+    width: 1100px;
+    height: 300px;
+  }
+  .custom-tooltip span {
+    display: inline-block;
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+  .custom-tooltip {
+    left: -2rem;
+    width: 100px !important;
+    z-index: 2;
+  }
+  .responsiveContainer_activity {
+    width: 1100px;
+    height: 300px;
+  }
+  .responsiveContainer_activity .chart-container .background-chart .recharts-wrapper{
+    width: 1100px;
+    height: 300px;
+  }
+  [id='dashboard']{
+    flex-direction: column;
+    width: 100%;
+    top: 65%;
+    justify-content: center;
+    align-items: center;
+  }
+  .additionnal_container{
+    transform: scale(0.75);
+    flex-direction: column;
+  }
+  .chart-title{
+    font-size: 1rem;
+  }
+  .padding{
+    margin-top: 0%;
+    padding: 0rem;
   }
 
-  @media(min-width: 1100px) and (max-width:1300px){
-    .additionnal_container{
-      transform: scale(0.85);
-      margin-left: 5%;
-      margin-top: 10%;
-    }
+  /* AVERAGE */
+
+  .custom-tooltip-average{
+    width: 25px!important;
+    height: inherit!important;
   }
-  @media(min-width: 1300px) and (max-width:1500px){
-    .additionnal_container{
-      transform: scale(0.95);
-      margin-left: 5%;
-      margin-top: 10%;
-    }
+  .custom-tooltip-average span{
+    text-align: center;
+    display: flex;
+    width: 100%;
+    margin-left: 80%;
+    flex-wrap: break-word;
   }
-  @media(min-width: 1500px){
-    .additionnal_container{
-      transform: scale(1);
-      margin-left: 5%;
-      margin-top: 10%;
-    }
+  .background-chart{
+    padding: 1%;
+    margin: 0 5% 0 5%;
   }
+  .cards{
+    margin-left: none;
+  }
+}
+
+@media(min-width: 1100px) and (max-width:1300px){
+  .additionnal_container{
+    transform: scale(0.85);
+    margin-left: 5%;
+    margin-top: 10%;
+  }
+}
+@media(min-width: 1300px) and (max-width:1500px){
+  .additionnal_container{
+    transform: scale(0.95);
+    margin-left: 5%;
+    margin-top: 10%;
+  }
+}
+@media(min-width: 1500px){
+  .additionnal_container{
+    transform: scale(1);
+    margin-left: 5%;
+    margin-top: 10%;
+  }
+}

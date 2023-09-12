@@ -5,10 +5,8 @@ import HorizontalNav from '../nav/HorizontalNav';
 import LateralNav from '../nav/LateralNav';
 import Hello from './Hello';
 import Performance from './Performance'
-import Test from './Average';
 import Average from './Average';
 import Score from './Score';
-import { ResponsiveContainer } from 'recharts';
 const Dashboard = () => {
   const { id } = useParams();
   return (
@@ -16,21 +14,21 @@ const Dashboard = () => {
     <HorizontalNav />
       <LateralNav />
       <Hello userId={id}/>
-    <section id='dashboard'>
-      <div className='additionnal_container'>
-        <div className='containerInfosLeft'>
-            <Activity userId={id} />
-          <div className='container-bottom'>
-            <Average userId={id}/>
-            <Performance userId={id}/>
-            <Score userId={id}/>
+        <section id='dashboard'>
+          <div className='additionnal_container'>
+            <div className='containerInfosLeft'>
+                <Activity userId={id} />
+              <div className='container-bottom'>
+                <Average userId={id}/>
+                <Performance userId={id}/>
+                <Score userId={id}/>
+              </div>
+            </div>
+            <div className='containerInfosRight'>
+            <Card userId={id}/>
+            </div>
           </div>
-        </div>
-        <div className='containerInfosRight'>
-        <Card userId={id}/>
-        </div>
-        </div>
-    </section>
+      </section>
     </>
   )
 }

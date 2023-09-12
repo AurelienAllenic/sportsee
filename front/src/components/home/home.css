@@ -14,12 +14,11 @@
     padding: 2% auto;
     border: none;
     background-color: transparent;
-
 }
 .link-choice{
-font-size: 1.7rem;
-text-decoration: none;
-color: black;
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: black;
 }
 .container-choices{
     display: flex;

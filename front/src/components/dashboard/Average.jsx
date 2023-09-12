@@ -4,13 +4,11 @@ import { LineChart, XAxis, YAxis, Tooltip, Line, Rectangle, ResponsiveContainer 
 
 function customMouseMove(e){
   let sessionWrap = document.querySelector('.container_average_sessions');
-
   if (e.isTooltipActive) {
     let windowWidth = sessionWrap.offsetWidth;
     let mouseXpercent = Math.floor(
       (e.activeCoordinate.x / windowWidth) * 100
     );
-    
     sessionWrap.style.background = `linear-gradient(90deg, rgba(255,0,0, 1) ${mouseXpercent}%, rgba(0,0,0,0.1) ${mouseXpercent}%, rgba(0,0,0,0.1) 100%)`;
     sessionWrap.style.borderRadius = '10px';
   }
@@ -28,10 +26,6 @@ const Average = ({ userId }) => {
   const [infosAverage, setInfosAverage] = useState([]);
   const [infosAverageSessionLength, setInfosAverageSessionLength] = useState([]);
   const [yAxisDomain, setYAxisDomain] = useState([0, 10]);
-  const chartRef = useRef(null);
-  const [startIndex, setStartIndex] = useState(null);
-  const [endIndex, setEndIndex] = useState(null);
-  const [showReferenceLine, setShowReferenceLine] = useState(false);
 
   useEffect(() => {
     ApiService.getUserAverageSession(userId)
@@ -43,13 +37,14 @@ const Average = ({ userId }) => {
   
         const infosAverageMap = updatedData.map((item) => item.sessionLength);
         setInfosAverageSessionLength(infosAverageMap);
+
         const maxSessionLength = Math.max(...infosAverageMap);
         setYAxisDomain([0, maxSessionLength + maxSessionLength]);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [userId]);
   
   
   const CustomCursor = ({points}) => {
@@ -77,7 +72,6 @@ const CustomTooltipAverage = ({ active, payload }) => {
       </div>
     );
   }
-
   return null;
 };
   const formatDayTick = (dayNumber) => {
@@ -92,60 +86,61 @@ const CustomTooltipAverage = ({ active, payload }) => {
   return (
     <>
     <div className='container_average_sessions'>
-    <ResponsiveContainer className='responsiveContainer_average ' width='100%' height='100%' aspect={1 / 1}>
-      <LineChart
-        data={infosAverage}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        style={{ background: 'red', borderRadius: '10px' }}
-        id='linechart'
-        onMouseMove={(e) => customMouseMove(e)}
-        onMouseOut={() => customOnMouseOut()}
-      >
-        <text x={10} y={10} dx={10} dy={50} style={{ fontSize: '20px', fill: 'white', opacity: 0.8 }}>
-          Durée moyenne des <tspan x={10} y={65} dx={10} dy={25}>sessions</tspan>
-        </text>
-        <XAxis
-          dataKey="day"
-          tickFormatter={formatDayTick}
-          axisLine={false}
-          tickLine={false}
-          tick={{ fill: 'white', opacity: 0.8, margin: 50 }}
-          padding={{ left: -40, right: -40 }}
-          textAnchor="middle"
-        />
-        <YAxis dataKey="sessionLength" hide={true} data={infosAverage} domain={yAxisDomain} scale={'linear'}/>
-        <Tooltip
-            wrapperStyle={{
-              background: '#FFF',
-              color: '#000',
-              width: '75px',
-              height: '45px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              textAlign: 'center',
-              outline: 'none',
-            }}
-            labelStyle={{display: 'none', border: 'none'}}
-            content={<CustomTooltipAverage />}
-            cursor={<CustomCursor />}
-          />
-        <Line
-          type="monotone"
-          dataKey="sessionLength"
-          stroke="rgba(255, 255, 255, 0.7)"
-          strokeWidth={2.7}
-          dot={false}
-          activeDot={{ r: 4, strokeWidth: 4, stroke: "white", fill: "white" }}
-        />
-        <defs>
-          <linearGradient id="linear-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="lightgray" />
-            <stop offset="100%" stopColor="black" />
-          </linearGradient>
-        </defs>
-      </LineChart>
-      </ResponsiveContainer>
+      <ResponsiveContainer className='responsiveContainer_average ' width='100%' height='100%' aspect={1 / 1}>
+            <LineChart
+              data={infosAverage}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              style={{ background: 'red', borderRadius: '10px' }}
+              id='linechart'
+              onMouseMove={(e) => customMouseMove(e)}
+              onMouseOut={() => customOnMouseOut()}
+            >
+              <text x={10} y={10} dx={10} dy={50} style={{ fontSize: '20px', fill: 'white', opacity: 0.8 }}>
+                Durée moyenne des <tspan x={10} y={65} dx={10} dy={25}>sessions</tspan>
+              </text>
+              <XAxis
+                dataKey="day"
+                tickFormatter={formatDayTick}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: 'white', opacity: 0.8, margin: 50 }}
+                padding={{ left: -40, right: -40 }}
+                textAnchor="middle"
+              />
+              <YAxis dataKey="sessionLength" hide={true} data={infosAverage} domain={yAxisDomain} scale={'linear'}/>
+              <Tooltip
+                wrapperStyle={{
+                background: '#FFF',
+                color: '#000',
+                width: '75px',
+                height: '45px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                textAlign: 'center',
+                outline: 'none',
+                }}
+                labelStyle={{display: 'none', border: 'none'}}
+                content={<CustomTooltipAverage />}
+                cursor={<CustomCursor />}
+              />
+              <Line
+                type="monotone"
+                dataKey="sessionLength"
+                stroke="rgba(255, 255, 255, 0.7)"
+                strokeWidth={2.7}
+                dot={false}
+                activeDot={{ r: 4, strokeWidth: 4, stroke: "white", fill: "white" }}
+              />
+              {/* Using defs to create a linear gradient */}
+              <defs>
+                <linearGradient id="linear-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="lightgray" />
+                  <stop offset="100%" stopColor="black" />
+                </linearGradient>
+              </defs>
+            </LineChart>
+        </ResponsiveContainer>
       </div>
     </>
   );  

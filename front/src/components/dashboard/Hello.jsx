@@ -13,7 +13,7 @@ const Hello = ({userId}) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [userId]);
 
   return (
     <>

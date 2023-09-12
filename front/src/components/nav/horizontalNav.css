@@ -32,8 +32,8 @@
   }
   @media (max-width: 1024px){
     .list_horizontalNav{
-        justify-content: center;
-        gap: 100px;
+      justify-content: center;
+      gap: 100px;
     }
   }
   

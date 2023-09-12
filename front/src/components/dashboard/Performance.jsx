@@ -12,8 +12,9 @@ import { Text } from 'recharts'; // Ajout de l'import pour Text
 const Performance = ({ userId }) => {
   const [data, setData] = useState([]);
   const [kind, setKind] = useState({});
-  const [fontSize, setFontSize] = useState(window.innerWidth <= 1600 ? 15 : 20); // Initialize font size
-  const [outerRadius, setOuterRadius] = useState(window.innerWidth <= 1600 ? 90 : 120); // Initialize outer radius
+  const [fontSize, setFontSize] = useState(window.innerWidth <= 1600 ? 15 : 20);
+  const [outerRadius, setOuterRadius] = useState(window.innerWidth <= 1600 ? 90 : 120);
+  
   useEffect(() => {
     ApiService.getUserPerformance(userId)
       .then((res) => {
@@ -33,14 +34,14 @@ const Performance = ({ userId }) => {
     };
   }, [userId]); // Include userId in the dependency array
 
-  const names = [
-    'Cardio',
-    'Energie',
-    'Endurance',
-    'Force',
-    'Vitesse',
-    'Intensité',
-  ];
+const names = [
+  'Cardio',
+  'Energie',
+  'Endurance',
+  'Force',
+  'Vitesse',
+  'Intensité',
+];
   
   const radarData = data.map((item, index) => ({
     subject: index < names.length ? names[index] : '',

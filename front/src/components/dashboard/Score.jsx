@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from './apiService';
 import { RadialBarChart, RadialBar, Cell, ResponsiveContainer } from 'recharts';
-import { MdMargin } from 'react-icons/md';
 
 const Score = ({ userId }) => {
   const [score, setScore] = useState([]);
@@ -14,7 +13,7 @@ const Score = ({ userId }) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [userId]);
 
   const calculatePercentage = (value) => {
     return Math.floor(value * 100);
@@ -39,30 +38,28 @@ const Score = ({ userId }) => {
 
   return (
     <ResponsiveContainer className='responsiveContainer_score' width='100%' height='100%' aspect={1/1}>
-    <div style={{  background: '#FBFBFB'}} className='chart-container padding'>
-
- <RadialBarChart width={350} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
-  <text x="10" y="30" fontSize={20} fill="black" textAnchor="start" fontWeight={500}>
-    Score
-  </text>
-  <RadialBar
-    dataKey="value"
-    fill="red"
-    background={{ fill: 'none' }}
-    cornerRadius={10}
-    label={{ content: labelContent, style: { backgroundColor: 'white' } }}
-  >
-    {data.map((entry, index) => (
-      <Cell
-        key={`cell-${index}`}
-        fill={COLORS[index % COLORS.length]}
-        stroke="transparent"
-        style={index === 1 ? { display: "none" } : null}
-      />
-    ))}
-  </RadialBar>
-</RadialBarChart>
-
+    <div style={{  background: '#FBFBFB'}} className='chart-container borderRadius'>
+      <RadialBarChart width={350} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
+        <text x="10" y="30" fontSize={20} fill="black" textAnchor="start" fontWeight={500}>
+          Score
+        </text>
+        <RadialBar
+          dataKey="value"
+          fill="red"
+          background={{ fill: 'none' }}
+          cornerRadius={10}
+          label={{ content: labelContent, style: { backgroundColor: 'white' } }}
+        >
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={COLORS[index % COLORS.length]}
+              stroke="transparent"
+              style={index === 1 ? { display: "none" } : null}
+            />
+          ))}
+        </RadialBar>
+      </RadialBarChart>
       <div className='container-score'>
         <span className='container-percentages'>
         {`${calculatePercentage(score)}%`}<br />
@@ -74,7 +71,7 @@ const Score = ({ userId }) => {
       </div>
       </div>
     </div>
-    </ResponsiveContainer>
+  </ResponsiveContainer>
   );
 };
 

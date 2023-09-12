@@ -3,7 +3,6 @@ import axios from "axios";
 const ApiService = {
   getName: (userId) => {
     const url = `http://localhost:3000/user/${userId}`;
-    
     return axios.get(url).then((res) => {
       return res.data.data.userInfos.firstName;
     });
@@ -11,9 +10,7 @@ const ApiService = {
 
   getScore: (userId) => {
     const url = `http://localhost:3000/user/${userId}`;
-  
     return axios.get(url).then((res) => {
-  
       if (parseInt(userId) === 18) {
         return res.data.data.score;
       } else {
@@ -31,30 +28,26 @@ const ApiService = {
 
   getUserCount: (userId) => {
     const url = `http://localhost:3000/user/${userId}`;
-
     return axios.get(url).then((res) => {
-       let calorieCount = res.data.data.keyData.calorieCount;
-       let carbohydrateCount = res.data.data.keyData.carbohydrateCount;
-       let lipidCount = res.data.data.keyData.lipidCount;
-       let proteinCount = res.data.data.keyData.proteinCount;
-       return {calorieCount, carbohydrateCount, lipidCount, proteinCount};
+      let calorieCount = res.data.data.keyData.calorieCount;
+      let carbohydrateCount = res.data.data.keyData.carbohydrateCount;
+      let lipidCount = res.data.data.keyData.lipidCount;
+      let proteinCount = res.data.data.keyData.proteinCount;
+      return {calorieCount, carbohydrateCount, lipidCount, proteinCount};
     });
   },
 
   getUserActivity: (userId) => {
     const url = `http://localhost:3000/user/${userId}/activity`;
-  
     return axios.get(url).then((res) => {
       let weight = res.data.data.sessions.map(session => session.kilogram);
       let burnedCalories = res.data.data.sessions.map(session => session.calories);
       let days = res.data.data.sessions.map(session => new Date(session.day).getDate());
-
       return { weight, burnedCalories, days };
     });
   },
   getUserPerformance: (userId) => {
     const url = `http://localhost:3000/user/${userId}/performance`;
-  
     return axios.get(url).then((res) => {
       return res.data
     });
