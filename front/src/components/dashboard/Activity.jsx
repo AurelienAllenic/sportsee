@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import ApiService from './apiService';
-
+import {formattedActivity} from './formatData';
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -23,15 +23,16 @@ const Activity = ({ userId }) => {
   const [infos, setInfos] = useState([]);
   const [weightState, setWeight] = useState({});
   const [burnedCaloriesState, setBurnedCalories] = useState({});
-  const [width, setWidth] = useState(window.innerWidth <= 1600 ? 1000 : 1100);;
-  const [height, setHeight] = useState(window.innerWidth <= 1600 ? 350 : 350);;
+  const [width, setWidth] = useState(window.innerWidth <= 1600 ? 1000 : 1100);
+  const [height, setHeight] = useState(window.innerWidth <= 1600 ? 350 : 350);
   const minWeight = Math.min(...infos.map(data => data.weight));
   const maxWeight = Math.max(...infos.map(data => data.weight));
   const uniqueValues = Array.from({ length: maxWeight - minWeight + 1 }, (_, index) => minWeight + index);
   
   useEffect(() => {
     ApiService.getUserActivity(userId)
-      .then(({ weight, burnedCalories, days }) => {
+      .then((res) => {
+        const { weight, burnedCalories, days } = formattedActivity(res);
         const data = days.map((day, index) => ({
           name: `${index + 1}`,
           weight: weight[index],
@@ -39,18 +40,23 @@ const Activity = ({ userId }) => {
           day: day
         }));
         setInfos(data);
-        setWeight(data.weight)
-        setBurnedCalories(data.burnedCalories)
+        setWeight(weight);
+        setBurnedCalories(burnedCalories);
       })
       .catch((error) => {
         console.error(error);
       });
-      window.addEventListener('resize', handleResize);
-
-      // Clean up the event listener on component unmount
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
+  
+    const handleResize = () => {
+      // Handle resize logic
+    };
+  
+    window.addEventListener('resize', handleResize);
+  
+    // Nettoyer l'écouteur d'événement lorsque le composant est démonté
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [userId]);
 
   const handleResize = () => {
@@ -73,9 +79,11 @@ const Activity = ({ userId }) => {
   return (
     <ResponsiveContainer className='responsiveContainer_activity' aspect={6 / 1}>
   <div className="chart-container">
+    {infos && infos.length > 0 ? (
+    <>
     <h2 className='chart-title'>Activité quotidienne</h2>
 
-    {infos && infos.length > 0 ? (
+    
       <div className='background-chart'>
 <Legend
     verticalAlign="top"
@@ -133,8 +141,9 @@ const Activity = ({ userId }) => {
       </BarChart>
       </div>
         </div>
+        </>
       ) : (
-      <p>Loading...</p>
+      <p>Erreur lors du chargement du graphique activités, vérfiez votre connexion internet</p>
     )}
   </div>
   </ResponsiveContainer>

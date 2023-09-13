@@ -1,55 +1,46 @@
 import axios from "axios";
-
+import formattedName from "./formatData";
 const ApiService = {
   getName: (userId) => {
     const url = `http://localhost:3000/user/${userId}`;
     return axios.get(url).then((res) => {
-      return res.data.data.userInfos.firstName;
+      return res
     });
   },
 
-  getScore: (userId) => {
-    const url = `http://localhost:3000/user/${userId}`;
-    return axios.get(url).then((res) => {
-      if (parseInt(userId) === 18) {
-        return res.data.data.score;
-      } else {
-        return res.data.data.todayScore;
-      }
-    });
-  },
+
   
   getUserAverageSession: (userId) => {
     const url = `http://localhost:3000/user/${userId}/average-sessions`;
     return axios.get(url).then((res) => {
-      return res.data.data.sessions;
+      return res;
     });
   },
 
   getUserCount: (userId) => {
     const url = `http://localhost:3000/user/${userId}`;
     return axios.get(url).then((res) => {
-      let calorieCount = res.data.data.keyData.calorieCount;
-      let carbohydrateCount = res.data.data.keyData.carbohydrateCount;
-      let lipidCount = res.data.data.keyData.lipidCount;
-      let proteinCount = res.data.data.keyData.proteinCount;
-      return {calorieCount, carbohydrateCount, lipidCount, proteinCount};
+      return res
     });
   },
 
   getUserActivity: (userId) => {
     const url = `http://localhost:3000/user/${userId}/activity`;
     return axios.get(url).then((res) => {
-      let weight = res.data.data.sessions.map(session => session.kilogram);
-      let burnedCalories = res.data.data.sessions.map(session => session.calories);
-      let days = res.data.data.sessions.map(session => new Date(session.day).getDate());
-      return { weight, burnedCalories, days };
+      return res
     });
   },
   getUserPerformance: (userId) => {
     const url = `http://localhost:3000/user/${userId}/performance`;
     return axios.get(url).then((res) => {
-      return res.data
+      return res
+    });
+  },
+
+  getScore: (userId) => {
+    const url = `http://localhost:3000/user/${userId}`;
+    return axios.get(url).then((res) => {
+      return res
     });
   },
   

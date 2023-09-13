@@ -8,21 +8,26 @@ import {
 } from 'recharts';
 import ApiService from './apiService';
 import { Text } from 'recharts'; // Ajout de l'import pour Text
-
+import {formattedPerformance} from './formatData';
 const Performance = ({ userId }) => {
   const [data, setData] = useState([]);
   const [kind, setKind] = useState({});
   const [fontSize, setFontSize] = useState(window.innerWidth <= 1600 ? 15 : 20);
   const [outerRadius, setOuterRadius] = useState(window.innerWidth <= 1600 ? 90 : 120);
+  const [error, setError] = useState(false);
   
   useEffect(() => {
     ApiService.getUserPerformance(userId)
       .then((res) => {
-        setData(res.data.data);
-        setKind(res.data.kind);
+        const performance = formattedPerformance(res, userId);
+        console.log(performance)
+        setData(performance.data.data);
+        setKind(performance.data.kind);
+        setError(false);
       })
       .catch((error) => {
         console.error(error);
+        setError(true);
       });
 
     // Add event listener for window resize
@@ -72,8 +77,10 @@ const names = [
   }
 
   return (
-    <>
-      <ResponsiveContainer className='responsiveContainer_performance' aspect={1/1}>
+    <><ResponsiveContainer className='responsiveContainer_performance' aspect={1/1}>
+    {
+      error ? <h1 className='error'>Erreur lors de la récupération des performances, vérifiez votre connexion internet</h1> : 
+      
         <RadarChart
           outerRadius={outerRadius}
           data={reversedRadarData}
@@ -93,7 +100,8 @@ const names = [
             fillOpacity={0.6}
           />
         </RadarChart>
-      </ResponsiveContainer>
+      
+      }</ResponsiveContainer>
     </>
   );
 };

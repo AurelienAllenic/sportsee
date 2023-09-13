@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from './apiService';
 import { RadialBarChart, RadialBar, Cell, ResponsiveContainer } from 'recharts';
-
+import { formattedScore } from './formatData';
 const Score = ({ userId }) => {
   const [score, setScore] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     ApiService.getScore(userId)
       .then((res) => {
-        setScore(res);
+        const score = formattedScore(res, userId);
+        setScore(score);
+        setError(false);
       })
       .catch((error) => {
         console.error(error);
+        setError(true);
       });
   }, [userId]);
 
@@ -37,6 +41,9 @@ const Score = ({ userId }) => {
   };
 
   return (
+    <>
+    {
+      error ? <h1 className='error'>Erreur lors de la récupération du score, vérifiez votre connexion internet</h1> :
     <ResponsiveContainer className='responsiveContainer_score' width='100%' height='100%' aspect={1/1}>
     <div style={{  background: '#FBFBFB'}} className='chart-container borderRadius'>
       <RadialBarChart width={350} height={300} cx="50%" cy="50%" innerRadius="80%" outerRadius="100%" data={data} startAngle={90}>
@@ -72,6 +79,8 @@ const Score = ({ userId }) => {
       </div>
     </div>
   </ResponsiveContainer>
+}
+</>
   );
 };
 

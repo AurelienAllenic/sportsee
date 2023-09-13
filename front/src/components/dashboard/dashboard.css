@@ -204,6 +204,24 @@ font-weight: 500;
   left: 0;
   pointer-events: none;
 }
+.error-msg{
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50%;
+  margin-left: 5%;
+  width: 50%;
+}
+.error{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  height: 100px;
+  font-size: 1rem;
+}
   
   /* RESPONSIVE */
 
