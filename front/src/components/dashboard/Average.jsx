@@ -27,14 +27,15 @@ const Average = ({ userId }) => {
   const [infosAverage, setInfosAverage] = useState([]);
   const [infosAverageSessionLength, setInfosAverageSessionLength] = useState([]);
   const [yAxisDomain, setYAxisDomain] = useState([0, 10]);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     ApiService.getUserAverageSession(userId)
       .then((res) => {
-        setError(false);
+        console.log(res)
         const average = formattedAverage(res);
+        console.log(average)
         const firstData = { day: '', sessionLength: average[0].sessionLength - 1 };
+        console.log(firstData)
         const lastData = { day: '', sessionLength: average[average.length - 1].sessionLength + 1 };
         const updatedData = [firstData, ...average, lastData];
         setInfosAverage(updatedData);
@@ -47,7 +48,6 @@ const Average = ({ userId }) => {
       })
       .catch((error) => {
         console.error(error);
-        setError(true);
       });
   }, [userId]);
   
@@ -91,7 +91,6 @@ const CustomTooltipAverage = ({ active, payload }) => {
   return (
     <>
     <div className='container_average_sessions'>
-      { error ? <h1 className='error'>Erreur lors de la récupération des sessions moyennes, vérifiez votre connexion internet</h1> :
       <ResponsiveContainer className='responsiveContainer_average ' width='100%' height='100%' aspect={1 / 1}>
             <LineChart
               data={infosAverage}
@@ -147,7 +146,6 @@ const CustomTooltipAverage = ({ active, payload }) => {
               </defs>
             </LineChart>
         </ResponsiveContainer>
-        }
       </div>
     </>
   );  

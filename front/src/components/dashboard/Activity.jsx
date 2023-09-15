@@ -143,7 +143,7 @@ const Activity = ({ userId }) => {
         </div>
         </>
       ) : (
-      <p>Erreur lors du chargement du graphique activités, vérfiez votre connexion internet</p>
+      <p>Loading...</p>
     )}
   </div>
   </ResponsiveContainer>

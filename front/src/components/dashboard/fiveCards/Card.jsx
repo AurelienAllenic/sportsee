@@ -27,17 +27,16 @@ const Card = ({ icon, number, type, error }) => {
 
 const CardContainer = ({ userId }) => {
   const [count, setCount] = useState({});
-  const [error, setError] = useState(false)
+
   useEffect(() => {
     ApiService.getUserCount(userId)
       .then((res) => {
+        console.log(res)
         const { calorieCount, proteinCount, lipidCount, carbohydrateCount } = formattedCards(res);
         setCount({ calorieCount, proteinCount, lipidCount, carbohydrateCount });
-        setError(false)
       })
       .catch((error) => {
         console.error(error);
-        setError(true)
       });
   }, [userId]);
 
@@ -56,25 +55,21 @@ const CardContainer = ({ userId }) => {
         icon={caloriesIcon}
         number={`${formatNumber(count.calorieCount)}kCal`}
         type='Calories'
-        error={error}
       />
       <Card
         icon={proteinIcon}
         number={`${count.proteinCount}g`}
         type='Protéines'
-        error={error}
       />
       <Card
         icon={carbsIcon}
         number={`${count.carbohydrateCount}g`}
         type='Glucides'
-        error={error}
       />
       <Card
         icon={fatIcon}
         number={`${count.lipidCount}g`}
         type='Lipides'
-        error={error}
       />
     </div>
   );
